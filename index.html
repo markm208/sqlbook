@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        body {
+            margin-top: 20px;
+            background-color: whitesmoke; 
+        }
+        hr {
+            background-color: lightgray;
+        }
+        .authorName {
+            font-size: 2rem;
+            font-weight: 300;
+        }
+        .authorLink {
+            color: lightgray;
+        }
+        .authorLink:hover {
+            color: lightgray;
+        }
+        .chapterLink {
+            padding: 5px;
+        }
+        .jumbotron {
+            background-color: rgb(59,76,98);
+            color: white;
+        }
+        .card {
+            background-color: rgb(234, 234, 234); 
+            margin-bottom: 20px;
+        }
+    </style>
+    <title>Database Design and SQL for Beginners</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-3"><em>Database Design and SQL for Beginners</em></h1>
+            <hr class="my-4">
+            <p class="authorName"><a class="authorLink" href="https://ourcodestories.com/markm208/Playlist/All" target="_blank">Mark Mahoney</a></p>
+        </div>
+
+        <p>
+            <a class="introLink h5" data-toggle="collapse" href="#intro" role="button" aria-expanded="false" aria-controls="intro">
+                Introduction
+            </a>
+        </p>
+        <div class="collapse show" id="intro">
+            <div class="card card-body">
+                <p>
+                    This is a short introduction to relational database design and the Structured Query Language (SQL).
+                    Many people organize their electronic data into spreadsheets. This works great if the data is simple, small, and not likely to be tracked for very long periods of time. However, when you have more sophisticated, larger, and long-lived data sets the spreadsheet approach breaks down. In these examples I discuss why this is the case and how to build and query <em>relational databases</em>.
+                </p>
+                <p>
+                    I use a relational database management system called <a href="https://www.sqlite.org/index.html">SQLite</a>. SQLite is one of my favorite tools. It is an open-source, full-featured relational database management system where an entire database is stored in a single file. I also use an accompanying tool called <a href="https://sqlitebrowser.org/">'DB Browser for SQLite'</a> because it provides a nice user interface to interact with SQLite databases.
+                </p>
+                <p>
+                    I start by discussing what makes a good database design. I explain entity-relationship diagrams and schemas. 
+                    These modeling tools aide in the design of a database. I talk about one-to-many and many-to-many relationships and how to use them in a relational database. Perhaps most importantly, though, I cover the basics of SQL so that you can retrieve meaningful information from your databases.
+                </p>
+                <p>
+                    Each of the three links below will take you to a 'playback' that shows how I wrote some SQL to build and query a database for a fictitious pet adoption center. There are some videos that go along with the changes in the editor window. I move pretty fast in these playbacks so it is important that you spend some time after each of my comments to try and fully understand the SQL in the editor window.
+                </p>
+                <p>
+                    If you are curious about how to use SQLite databases in different programming languages then check out my other 'book', 
+                    <a href="https://markm208.github.io/sqlitebook/" target="_blank">Programming with SQLite</a>.
+                    If you'd like to stay connected and get updates when I add new playbacks you can follow me on twitter: <a href="https://twitter.com/markm208" target="_blank">@markm208</a>.
+                </p>
+             </div>
+        </div>
+
+        <p>
+            <a class="chapterLink h5" data-toggle="collapse" href="#chapter1" role="button" aria-expanded="false" aria-controls="chapter1">
+                Chapter 1 Database Design and SQL
+            </a>
+        </p>
+        <div class="collapse show" id="chapter1">
+            <table class="table table-hover">
+                <tr>
+                    <td>
+                        <a class="playbackTitleLink" href="chapter1/01/playback.html" target="_blank" class="playback-title">1.1 Database Design and Simple SQL</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="playbackTitleLink" href="chapter1/02/playback.html" target="_blank" class="playback-title">1.2 One-to-Many Relationships and More SQL</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="playbackTitleLink" href="chapter1/03/playback.html" target="_blank" class="playback-title">1.3 Many-to-Many Relationships and Even More SQL</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+<!-- Default Statcounter code for Updated Clojure Book
+https://personal.carthage.edu/mmahoney/courses/CSC3210/clojure/
+-->
+    <script type="text/javascript">
+        var sc_project=12421931; 
+        var sc_invisible=1; 
+        var sc_security="1d9b40f0"; 
+    </script>
+    <script type="text/javascript"
+        src="https://www.statcounter.com/counter/counter.js"
+        async>
+    </script>
+    <noscript>
+        <div class="statcounter">
+            <a title="Web Analytics"
+                href="https://statcounter.com/" target="_blank"><img
+                class="statcounter"
+                src="https://c.statcounter.com/12421931/0/1d9b40f0/1/"
+                alt="Web Analytics">
+            </a>
+        </div>
+    </noscript>
+    <!-- End of Statcounter Code -->
+  </body>
+</html>
