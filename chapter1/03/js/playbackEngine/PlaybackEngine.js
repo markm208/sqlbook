@@ -28,7 +28,8 @@ class PlaybackEngine {
       hasNewActiveFile: false,
       hasNewActiveDevGroup: false,
       numberOfCommentGroupsChanged: false,
-      fileEditLineNumber: -1
+      fileEditLineNumber: -1,
+      fileEditColumn: -1,
     };
 
     //aggregate info about the playback's comments
@@ -76,7 +77,8 @@ class PlaybackEngine {
       hasNewActiveFile: false,
       hasNewActiveDevGroup: false,
       numberOfCommentGroupsChanged: false,
-      fileEditLineNumber: -1
+      fileEditLineNumber: -1,
+      fileEditColumn: -1
     };
   }
   
@@ -135,6 +137,7 @@ class PlaybackEngine {
       //store the line number of the latest edit to scroll to in the playback
       if(currentEvent.type === 'INSERT' || currentEvent.type === 'DELETE') {
         this.mostRecentChanges.fileEditLineNumber = currentEvent.lineNumber;
+        this.mostRecentChanges.fileEditColumn = currentEvent.column;
       }
       
       //set the position of where the playback landed
@@ -179,6 +182,7 @@ class PlaybackEngine {
       //store the line number of the latest edit to scroll to in the playback
       if(currentEvent.type === 'INSERT' || currentEvent.type === 'DELETE') {
         this.mostRecentChanges.fileEditLineNumber = currentEvent.lineNumber;
+        this.mostRecentChanges.fileEditColumn = currentEvent.column;
       }
 
       //set the position of where the playback landed
@@ -791,58 +795,7 @@ class PlaybackEngine {
   }
 
   getReadTimeEstimate() {
-    //some constants (that may need to change with some more experience)
-    const secondsPerCommentWord = .2525;
-    const secondsPerCodeWord = 1.0;
-    const secondsPerSurroundingCodeLine = 2.0;
-    const secondsPerImage = 12.0;
-    const secondsPerAudioVideo = 20.0;
-    const qAndAThinkTime = 15.0;
-    
-    //total estimated read time in seconds
-    let totalSeconds = 0.0;
-
-    //go through all of the events
-    for(let eventId in this.playbackData.comments) {
-      const commentsAtEvent = this.playbackData.comments[eventId];
-      for(let i = 0;i < commentsAtEvent.length;i++) {
-        const comment = commentsAtEvent[i];
-
-        //comment text
-        const numWordsInCommentText = comment.commentText.split(/\s+/g).length;
-        totalSeconds += numWordsInCommentText * secondsPerCommentWord;
-
-        //selected code
-        let selectedTextWordCount = 0;
-        comment.selectedCodeBlocks.forEach(selectedCodeBlock => {
-          selectedTextWordCount += selectedCodeBlock.selectedText.split(/\s+/g).length;
-        });
-        totalSeconds += selectedTextWordCount * secondsPerCodeWord;
-
-        //surrounding code
-        totalSeconds += comment.linesAbove * secondsPerSurroundingCodeLine;
-        totalSeconds += comment.linesBelow * secondsPerSurroundingCodeLine;
-
-        //for media in the comment
-        totalSeconds += comment.imageURLs.length * secondsPerImage;
-        totalSeconds += comment.videoURLs.length * secondsPerAudioVideo;
-        totalSeconds += comment.audioURLs.length * secondsPerAudioVideo;
-
-        //for questions
-        if(comment.questionCommentData && comment.questionCommentData.question) {
-          let qAndAWordCount = comment.questionCommentData.question.split(/\s+/g).length; 
-          qAndAWordCount += comment.questionCommentData.explanation.split(/\s+/g).length;
-          qAndAWordCount += comment.questionCommentData.allAnswers.reduce((totalWordCount, answer) => {
-            return totalWordCount + answer.split(/\s+/g).length
-          }, 0);
-
-          //time to read and think about the question and time to read the explanation
-          totalSeconds += (qAndAWordCount * secondsPerCommentWord) + qAndAThinkTime;
-        }
-      }
-    }
-    //return an estimate in minutes
-    return Math.ceil(totalSeconds / 60.0);
+    return this.playbackData.estimatedReadTime;
   }
 
   addComment(newComment) {
